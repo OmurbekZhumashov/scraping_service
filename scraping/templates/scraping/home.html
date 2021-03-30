@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for qs in object_list %}
+            <div class="card my-3">
+      <div class="card-header">
+        <a href="{{ qs.url }}">{{ qs.title }}</a>
+      </div>
+      <div class="card-body">
+          <h4>{{ qs.company }}</h4>
+        <p class="card-text">{{ qs.description }}</p>
+          <p>{{ qs.city.name }} | {{ qs.language.name }} | <small>{{ qs.timestamp|date:"d-m-Y" }}</small></p>
+
+      </div>
+    </div>
+     {% empty %}
+        <h3>К сожелению, по вашему запросу ничего не найдено</h3>
+    {% endfor %}
+  <div class="row">
+      <div class="col-md-6 mx-auto">
+          <form method="GET" action="">
+        <div class="mb-3">
+         {{ form.as_p }}
+        </div>
+  <button type="submit" class="btn btn-primary">Найти</button>
+    </form></div>
+  </div>
+
+{% endblock %}
